@@ -47,7 +47,7 @@ def contacts(request):
 def resume(request, filename='resume.docx'):
     if request.method == 'POST':
 
-        doc = DocxTemplate(rf'{Path(__file__).resolve().parent.parent}/resume/templates_docx/blank-rezume-{request.POST["doc_template"]}.docx')
+        doc = DocxTemplate(rf'/resume/templates_docx/blank-rezume-{request.POST["doc_template"]}.docx')
         context = {'Surname': request.POST['Surname'], 'name': request.POST['name'],
                    'patronymic': request.POST['patronymic'],
                    'position': request.POST['position'], 'wage': request.POST['wage'],
@@ -70,8 +70,7 @@ def resume(request, filename='resume.docx'):
         doc.render(context)
         doc.save('resume.docx')
         if filename != '':
-            BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-            filepath = BASE_DIR + rf'\{filename}'
+            filepath = rf'\{filename}'
             path = open(filepath, 'rb')
             mime_type, _ = mimetypes.guess_type(filepath)
             response = HttpResponse(path, content_type=mime_type)
