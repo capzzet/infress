@@ -1,0 +1,35 @@
+{%extends 'resume/html/base.html'%}
+{%load static%}
+{%block head%}
+<link rel="stylesheet" href="{%static 'resume/css/blog.css'%}">
+{%endblock head%}
+{%block body%}
+<section class="section" >
+        <div class="container">
+            <div class="section__header__blog">
+                <h2 class="section__title__blog">Блог</h2>
+            </div>
+            <div class="blog" >
+                {%for p in posts%}
+                <div class="blog__item" >
+                    <div class="blog__header">
+                        <a href="#">
+                            <img class="blog__photo" src="{{p.photo.url}}" alt="">
+                        </a>
+                        <div class="blog__date">
+                            <div class="blog__date-day">{{p.time_create |date:"d M Y"}}</div>
+                        </div>
+                    </div>
+                    <div class="blog__content">
+                        <div class="blog__title">
+                            <a href="#">{{p.title}}</a>
+                        </div>
+                        <div class="blog__text">{{p.content|linebreaks|truncatewords:20}}</div>
+                        <a class="btn--blog" href="{{p.get_absolute_url}}" style="text-align:right;">Подробнее</a>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </section>
+{%endblock body%}

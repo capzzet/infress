@@ -1,0 +1,55 @@
+.section__title__resume {
+    font-size: 30px;
+    font-weight: 700;
+    color: #008cbb;
+    text-transform: uppercase;
+    text-align:center;
+    padding:80px 0px 20px;
+}
+.block__title{
+margin:20px 0px}
+textarea{
+    width: 100%;
+    height: 150px;
+}
+.block__subtitle{
+margin:20px 0px}
+textarea.feedback-input {
+    resize: none;
+}
+input.feedback-input {
+    padding:10px 5px;
+}
+.block{
+    border:1px solid black;
+    min-height: 650px;
+    width: 300px;
+    padding: 20px 50px;
+    vertical-align: middle 
+}
+.button-submit{
+    margin:0px 550px 15px;
+    width: 100%;
+    border:0px solid transparent;
+    cursor: pointer ;
+    background-color: #00cfff;
+    color: white;
+    font-size: 18px;
+
+    transition: all 0.3s linear;
+
+    font-weight: 300;
+    padding: 22px 50px 22px 50px;
+}
+.button-submit:hover{
+    background-color: #fff;
+    color: #000 ;
+    border:  1px solid black;
+}
+.resume__item {
+    width: 33.3333%;
+    padding: 0px 35px 40px 70px;
+    position: relative;
+    margin-bottom: 40px;
+}
+

@@ -1,0 +1,17 @@
+.section__title__blog_id {
+    font-size: 30px;
+    font-weight: 700;
+    color: #008cbb;
+    text-transform: uppercase;
+    text-align:center;
+    padding:80px 0px 20px;
+}
+.img_p{
+    text-align:center;
+}
+.section__text__blog_id{
+    font-size: 15px;
+    color: #09c;
+    text-align:justify;
+    padding:11px 0;
+}

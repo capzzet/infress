@@ -1,0 +1,20 @@
+{%extends 'resume/html/base.html'%}
+{%load static%}
+{%block head%}
+<link rel="stylesheet" href="{%static 'resume/css/blog_id.css'%}">
+{%endblock head%}
+{%block body%}
+<section class="section" >
+        <div class="container">
+            <div class="section__header__blog_id ">
+                <h2 class="section__title__blog_id ">{{blog.title}}</h2>
+                {%if blog.photo%}
+                <p class="img_p"><img src="{{blog.photo.url}}"></p>
+                {%endif%}
+                <div class="section__text__blog_id">
+                <p>{{blog.content|linebreaks}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{%endblock%}

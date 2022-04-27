@@ -1,0 +1,64 @@
+{% load static %}
+{% load resume_tags %}
+{%get_menu as menu1%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{%static 'resume/css/style.css'%}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300i,400,700&amp;subset=cyrillic-ext" rel="stylesheet">
+    <link rel="shortcut icon" href="{%static 'resume/img/logo.png'%}" type="image/x-icon">
+    <title>Inforesume</title>
+    {%block head%}
+    {%endblock head%}
+</head>
+<body>
+<header class="header" id="header">
+    <div class="container">
+        <div class="header__inner">
+            <div class="logo">
+                <a href="{%url 'home'%}" >Inforesume</a>
+            </div>
+            <nav class="nav" id="nav">
+                {%for menu_link in menu1%}
+                <a class="nav__link" href="{% url menu_link.url_name%}" >{{menu_link.title}}</a>
+                {%endfor%}
+            </nav>
+            <button class="nav-toggle" id="nav_toggle" type="button">
+                <span class="nav-toggle__item">Меню</span>
+            </button>
+        </div>
+    </div>
+</header>
+{%block body%}
+{%endblock body%}
+<div class="main">
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="container">
+                  <div class="footer__inner">
+                    <div class="footer__info">
+                      <div class="footer__title">
+                        Связаться с нами
+                      </div>
+                      <ul class="footer__list">
+                        <li class="footer__adress">Телефон: +996 (777) 77-77-77</li>
+                        <li class="footer__adress">Почта: inf@gmail.com</li>
+                        <li class="footer__adress">Адрес: 2а ул. Чолпон-Атинская, Бишкек</li>
+                      </ul>
+                    </div>
+                    <div class="footer__map">
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2924.6758169490386!2d74.67486091538804!3d42.85857791146571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389ec8217752924b%3A0x334bbc4af21f45d8!2z0JPQvtGB0YPQtNCw0YDRgdGC0LLQtdC90L3QvtC1INC_0YDQtdC00L_RgNC40Y_RgtC40LUgItCY0L3RhNC-0LrQvtC8IiDQv9GA0Lgg0JzQuNC90LjRgdGC0LXRgNGB0YLQstC1INGG0LjRhNGA0L7QstC-0LPQviDRgNCw0LfQstC40YLQuNGPINCa0KA!5e0!3m2!1sru!2skg!4v1649954747354!5m2!1sru!2skg" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </footer>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{%static 'resume/js/app.js'%}"></script>
+</body>
+</html>

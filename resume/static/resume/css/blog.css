@@ -1,0 +1,23 @@
+.section__title__blog {
+    font-size: 30px;
+    font-weight: 700;
+    color: #008cbb;
+    text-transform: uppercase;
+    text-align:center;
+    padding:80px 0;
+}
+.btn--blog{
+    margin:10px 0px 20px;
+    float:right;
+    background-color: #00cfff;
+    padding: 8px 14px;
+    color:white;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    transition: background .2s linear,color .2s linear;
+}
+.btn--blog:hover{
+    background-color: #008cbb;
+}
