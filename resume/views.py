@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from docxtpl import DocxTemplate
@@ -59,8 +60,8 @@ def resume(request):
                    'Personal_qualities': request.POST['Personal_qualities'],'Year_of_start': request.POST['Year_of_start'],'experience': request.POST['experience']}
         doc.render(context)
         doc.save('resume.docx')
-        filename = 'resume.pdf'
-        filepath = rf'{Path(__file__).resolve().parent.parent}\resume.pdf'
+        filename = 'resume.docx'
+        filepath = rf'{settings.MEDIA_ROOT}\resume.docx'
         with open(filepath, 'rb') as path:
             mime_type, _ = mimetypes.guess_type(filepath)
             response = HttpResponse(path, content_type=mime_type)
