@@ -44,38 +44,31 @@ def contacts(request):
     return render(request, 'resume/html/contacts.html')
 
 
-def resume(request, filename='resume.docx'):
+def resume(request):
     if request.method == 'POST':
-
-        doc = DocxTemplate(rf'/resume/templates_docx/blank-rezume-{request.POST["doc_template"]}.docx')
-        context = {'Surname': request.POST['Surname'], 'name': request.POST['name'],
-                   'patronymic': request.POST['patronymic'],
-                   'position': request.POST['position'], 'wage': request.POST['wage'],
-                   'employment': request.POST['employment'],
-                   'schedule': request.POST['schedule'], 'telephone': request.POST['telephone'],
-                   'mail': request.POST['mail'],
-                   'city': request.POST['city'], 'birthday': request.POST['birthday'], 'sex': request.POST['sex'],
-                   'Family': request.POST['Family'], 'job_start': request.POST['job_start'],
-                   'job_end': request.POST['job_end'],
-                   'job_Position': request.POST['job_Position'], 'Organization': request.POST['Organization'],
-                   'job_responsibilities': request.POST['job_responsibilities'],
-                   'educational_institution': request.POST['educational_institution'],
-                   'Faculty': request.POST['Faculty'], 'Speciality': request.POST['Speciality'],
-                   'Year_of_ending': request.POST['Year_of_ending'], 'Form_of_study': request.POST['Form_of_study'],
-                   'lang': request.POST['lang'],
-                   'attainments': request.POST['attainments'], 'Recommendations': request.POST['Recommendations'],
-                   'Hobby': request.POST['Hobby'],
-                   'Personal_qualities': request.POST['Personal_qualities'],
-                   'Year_of_start': request.POST['Year_of_start'], 'experience': request.POST['experience']}
+        doc = DocxTemplate(rf'{Path(__file__).resolve().parent.parent}/resume/templates_docx/blank-rezume-{request.POST["doc_template"]}.docx')
+        context = {'Surname': request.POST['Surname'],'name': request.POST['name'],'patronymic': request.POST['patronymic'],
+                   'position': request.POST['position'],'wage': request.POST['wage'],'employment': request.POST['employment'],
+                   'schedule': request.POST['schedule'],'telephone': request.POST['telephone'],'mail': request.POST['mail'],
+                   'city': request.POST['city'],'birthday': request.POST['birthday'],'sex': request.POST['sex'],
+                   'Family': request.POST['Family'],'job_start': request.POST['job_start'],'job_end': request.POST['job_end'],
+                   'job_Position': request.POST['job_Position'],'Organization': request.POST['Organization'],'job_responsibilities': request.POST['job_responsibilities'],
+                   'educational_institution': request.POST['educational_institution'],'Faculty': request.POST['Faculty'],'Speciality': request.POST['Speciality'],
+                   'Year_of_ending': request.POST['Year_of_ending'],'Form_of_study': request.POST['Form_of_study'],'lang': request.POST['lang'],
+                   'attainments': request.POST['attainments'],'Recommendations': request.POST['Recommendations'],'Hobby': request.POST['Hobby'],
+                   'Personal_qualities': request.POST['Personal_qualities'],'Year_of_start': request.POST['Year_of_start'],'experience': request.POST['experience']}
         doc.render(context)
         doc.save('resume.docx')
-        if filename != '':
-            filepath = rf'\{filename}'
-            path = open(filepath, 'rb')
+        in_file = os.path.abspath(rf'{Path(__file__).resolve().parent.parent}\resume.docx')
+        out_file = os.path.abspath(rf'{Path(__file__).resolve().parent.parent}\resume.pdf')
+        convert(in_file, out_file)
+        filename = 'resume.pdf'
+        filepath = rf'{Path(__file__).resolve().parent.parent}\resume.pdf'
+        with open(filepath, 'rb') as path:
             mime_type, _ = mimetypes.guess_type(filepath)
             response = HttpResponse(path, content_type=mime_type)
             response['Content-Disposition'] = "attachment; filename=%s" % filename
-            return response
+        return response
     return render(request, 'resume/html/resume.html')
 
 def custom_page_not_found_view(request, exception):
