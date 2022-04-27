@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from docxtpl import DocxTemplate
@@ -60,9 +59,6 @@ def resume(request):
                    'Personal_qualities': request.POST['Personal_qualities'],'Year_of_start': request.POST['Year_of_start'],'experience': request.POST['experience']}
         doc.render(context)
         doc.save('resume.docx')
-        in_file = os.path.abspath(rf'{Path(__file__).resolve().parent.parent}\resume.docx')
-        out_file = os.path.abspath(rf'{Path(__file__).resolve().parent.parent}\resume.pdf')
-        convert(in_file, out_file)
         filename = 'resume.pdf'
         filepath = rf'{Path(__file__).resolve().parent.parent}\resume.pdf'
         with open(filepath, 'rb') as path:
@@ -72,14 +68,6 @@ def resume(request):
         return response
     return render(request, 'resume/html/resume.html')
 
-def download(request, path=r'\resume.docx'):
-    file_path = os.path.join(settings.MEDIA_ROOT, path)
-    if os.path.exists(file_path):
-        with open(file_path, 'rb') as fh:
-            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
-            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
-            return response
-    raise custom_page_not_found_view
 def custom_page_not_found_view(request, exception):
     return render(request, "resume/errors/404.html", {})
 
